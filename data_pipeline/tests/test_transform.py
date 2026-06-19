@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from data_pipeline.transform import Transform_Data
+from data_pipeline.transform import DF_Data
 
 class TestTransformData(unittest.TestCase):
 
@@ -57,7 +57,7 @@ class TestTransformData(unittest.TestCase):
                     }
                 
         
-        df = Transform_Data(self.data)
+        df = DF_Data(self.data)
         # Check type
         self.assertIsInstance(df, pd.DataFrame)
         # Check number of rows
