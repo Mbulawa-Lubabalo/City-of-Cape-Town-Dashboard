@@ -13,5 +13,5 @@ def Fetch_Data(url: str):
     return response.json()
 
 if __name__ == "__main__":
-    Fetch_Data(url)
+    print(type(Fetch_Data(url)))
 
