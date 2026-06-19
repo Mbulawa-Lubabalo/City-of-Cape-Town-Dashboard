@@ -26,3 +26,5 @@ jobs:
     - name: Run tests
       run: |
         python -m unittest discover -s data_pipeline/tests -p "test*.py"
+
+        
