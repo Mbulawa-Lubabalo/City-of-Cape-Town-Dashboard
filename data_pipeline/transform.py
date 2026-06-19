@@ -18,8 +18,13 @@ def Clean_Data(data: pd.DataFrame):
     # Rename columns
     data = data.rename(columns={'C3_Complaint_Type': 'Complaint_Type'})
 
-    
-    print(data)
+    # date format
+    data["Created_On_Date"] = pd.to_datetime(data["Created_On_Date"], unit="ms").dt.strftime("%Y-%m-%d")
+    data["Changed_on"] = pd.to_datetime(data["Changed_on"], unit="ms").dt.strftime("%Y-%m-%d")
+    data["Completed_Date"] = pd.to_datetime(data["Completed_Date"], unit="ms").dt.strftime("%Y-%m-%d")
+
+
+    print(data.head())
     return data
 
 if __name__ == "__main__":
