@@ -1,4 +1,4 @@
-from data_pipeline.ingestion import Fetch_Data
+from ingestion import Fetch_Data
 import pandas as pd
 import json
 
