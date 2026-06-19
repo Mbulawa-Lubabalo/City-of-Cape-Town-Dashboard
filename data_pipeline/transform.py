@@ -23,7 +23,7 @@ def Clean_Data(data: pd.DataFrame):
     data["Changed_on"] = pd.to_datetime(data["Changed_on"], unit="ms").dt.strftime("%Y-%m-%d")
     data["Completed_Date"] = pd.to_datetime(data["Completed_Date"], unit="ms").dt.strftime("%Y-%m-%d")
 
-
+    data = data.sort_values(by="Created_On_Date")
     print(data.head())
     return data
 
