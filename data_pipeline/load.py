@@ -1,12 +1,12 @@
 from supabase import create_client, Client
 from data_pipeline.transform import Clean_Data, dataFrame_Data
 from sqlalchemy import create_engine, text
-from database import Database_management
+from database import Database_management, Insert_data
 # from data_pipeline.ingestion import Fetch_Data
 
 def Database_Connection():
     DB_URL = "postgresql://postgres.sopoxavbgzasekfzjyrb:Lmbulawa4%40006@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
-    print(DB_URL)
+    # print(DB_URL)
     
     if not DB_URL:
         raise RuntimeError("DATABASE_URL environment variable not set")
@@ -28,5 +28,6 @@ def Load_Data(engine):
 if __name__=="__main__":
     engine = Database_Connection()
     print(engine)
-    # df = Clean_Data(dataFrame_Data)
+    df = Clean_Data(dataFrame_Data)
     Load_Data(engine)
+    Insert_data(engine, df)
