@@ -180,3 +180,34 @@ def Insert_data(engine, df):
 
         # # sub_councils
         # conn.execute(insert(SubCouncils), records_for_sub_councils)
+
+def vw_service_requests(engine):
+
+    sql = text("""CREATE OR REPLACE VIEW public.vw_service_requests AS
+    SELECT
+        sr.id,
+        sr.object_id,
+        sr.notification,
+        ct.complaint_type,
+        wc.work_center,
+        s.suburb,
+        w.code AS ward,
+        sc.sub_council,
+        sr.created_on_date,
+        sr.completed_date,
+        sr.status
+    FROM service_requests sr
+    JOIN complaint_types ct
+        ON sr.complaint_type_id = ct.id
+    JOIN work_centers wc
+        ON sr.work_center_id = wc.id
+    JOIN suburbs s
+        ON sr.suburb_id = s.id
+    JOIN wards w
+        ON s.ward_id = w.id
+    JOIN sub_councils sc
+        ON w.sub_council_id = sc.id;
+               """)
+    
+    with engine.begin() as conn:
+        conn.execute(sql)

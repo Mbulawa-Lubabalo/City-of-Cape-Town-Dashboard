@@ -1,7 +1,7 @@
 from supabase import create_client, Client
 from data_pipeline.transform import Clean_Data, dataFrame_Data
 from sqlalchemy import create_engine, text
-from database import Database_management, Insert_data
+from database import Database_management, Insert_data, vw_service_requests
 # from data_pipeline.ingestion import Fetch_Data
 
 def Database_Connection():
@@ -29,5 +29,6 @@ if __name__=="__main__":
     engine = Database_Connection()
     print(engine)
     df = Clean_Data(dataFrame_Data)
-    Load_Data(engine)
-    Insert_data(engine, df)
+    # Load_Data(engine)
+    # Insert_data(engine, df)
+    vw_service_requests(engine)
