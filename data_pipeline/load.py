@@ -1,7 +1,7 @@
 from supabase import create_client, Client
 from data_pipeline.transform import Clean_Data, dataFrame_Data
 from sqlalchemy import create_engine, text
-from database import Database_management, Insert_data, vw_service_requests
+from database import Database_management, Insert_data, vw_service_requests, queries
 # from data_pipeline.ingestion import Fetch_Data
 
 def Database_Connection():
@@ -14,8 +14,7 @@ def Database_Connection():
     return engine
 
 def Load_Data(engine):
-    # url = "postgresql://postgres.sopoxavbgzasekfzjyrb:Lmbulawa4%40006@aws-0-eu-west-1.pooler.supabase.com:5432/postgres"
-    # postgresql://postgres:[YOUR-PASSWORD]@db.sopoxavbgzasekfzjyrb.supabase.co:5432/postgres
+
     key = "sb_publishable_cQfxPy_Jturhljr9sxlZbw__xTz7Z4Q"
     
     # supabase: Client = create_client(url, key)
@@ -27,8 +26,9 @@ def Load_Data(engine):
 
 if __name__=="__main__":
     engine = Database_Connection()
-    print(engine)
+    # print(engine)
     df = Clean_Data(dataFrame_Data)
     # Load_Data(engine)
     # Insert_data(engine, df)
-    vw_service_requests(engine)
+    # vw_service_requests(engine)
+    queries(engine)

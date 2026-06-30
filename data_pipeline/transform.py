@@ -11,7 +11,7 @@ def DF_Data(rawdata: dict) -> pd.DataFrame:
     
     df = pd.DataFrame([f["properties"] for f in features])
     
-    print(df.head())
+    # print(df.head())
     return df
 
 def Clean_Data(data: pd.DataFrame):
@@ -35,7 +35,7 @@ def Clean_Data(data: pd.DataFrame):
 
     data = data.sort_values(by="Created_On_Date")
     data.columns = data.columns.str.lower()
-    print(data)
+    # print(data)
     return data
 
 rawdata = Fetch_Data(url)

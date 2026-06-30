@@ -41,6 +41,11 @@ def Database_management(engine):
                         FOREIGN KEY (ward_id)
                         REFERENCES public.wards(id)
                 );
+                CREATE TABLE IF NOT EXISTS public.suburb (
+                    id SERIAL PRIMARY KEY,
+                    suburb TEXT UNIQUE NOT NULL,
+                    total_complaints INT NOT NULL
+                );
 
                 CREATE TABLE IF NOT EXISTS public.service_requests (
                     id BIGSERIAL PRIMARY KEY,
@@ -211,3 +216,41 @@ def vw_service_requests(engine):
     
     with engine.begin() as conn:
         conn.execute(sql)
+
+
+def queries(engine):
+    sql = [
+        text("""
+        CREATE OR REPLACE VIEW public.vw_suburbs AS
+        SELECT
+            s.suburb,
+            COUNT(sr.id) AS total_complaints
+        FROM public.vw_service_requests sr
+        JOIN public.suburbs s
+            ON sr.suburb = s.suburb
+        GROUP BY s.suburb
+        ORDER BY total_complaints DESC
+        LIMIT 8;
+               """),
+        text(
+    """
+    CREATE OR REPLACE VIEW public.vw_complaints_per_month AS
+    SELECT
+        DATE_TRUNC('day', created_on_date) AS day,
+        COUNT(id) AS total_complaints
+    FROM public.vw_service_requests
+    WHERE EXTRACT(MONTH FROM created_on_date) = 4
+    GROUP BY day
+    ORDER BY day;
+    """
+        )
+
+    ]
+    
+    # with engine.connect() as conn:
+    #     result = conn.execute(sql)
+    #     print(result.fetchall())
+    with engine.begin() as conn:
+        # for row in records:
+        for stmt in sql:
+            conn.execute(stmt)
