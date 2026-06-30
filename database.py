@@ -233,17 +233,35 @@ def queries(engine):
         LIMIT 8;
                """),
         text(
-    """
-    CREATE OR REPLACE VIEW public.vw_complaints_per_month AS
-    SELECT
-        DATE_TRUNC('day', created_on_date) AS day,
-        COUNT(id) AS total_complaints
-    FROM public.vw_service_requests
-    WHERE EXTRACT(MONTH FROM created_on_date) = 4
-    GROUP BY day
-    ORDER BY day;
-    """
-        )
+        """
+        CREATE OR REPLACE VIEW public.vw_complaints_per_month AS
+        SELECT
+            DATE_TRUNC('day', created_on_date) AS day,
+            COUNT(id) AS total_complaints
+        FROM public.vw_service_requests
+        WHERE EXTRACT(MONTH FROM created_on_date) = 4
+        GROUP BY day
+        ORDER BY day;
+        """
+        ),
+        text("""
+        CREATE OR REPLACE VIEW public.vw_april_kpi AS
+        SELECT
+            COUNT(id) 
+                FILTER (WHERE EXTRACT(MONTH FROM created_on_date) = 4) 
+            AS april_total_complaints,
+            SUM(CASE WHEN status = 'Closed' THEN 1 ELSE 0 END) 
+                FILTER (WHERE EXTRACT(MONTH FROM created_on_date) = 4) 
+            AS completed_complaints,
+            SUM(CASE WHEN status = 'Open' THEN 1 ELSE 0 END) 
+                FILTER (WHERE EXTRACT(MONTH FROM created_on_date) = 4) 
+            AS open_complaints,
+            ROUND(AVG(completed_date - created_on_date) 
+                FILTER (WHERE completed_date IS NOT NULL AND completed_date <> DATE '1970-01-01'))
+            AS avg_resolution_days
+
+        FROM public.vw_service_requests;
+    """)
 
     ]
     

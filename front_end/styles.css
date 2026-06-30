@@ -1,4 +1,4 @@
-:root{
+/* :root{
 --bg:#0b1020; --card:#11172b; --card-2:#0f1426; --border:#1f2742;
 --fg:#e6e9f5; --muted:#8a93b2; --primary:#5b8cff; --primary-fg:#fff;
 --warning:#f5a524; --success:#22c55e; --accent:#7c5cff;
@@ -8,4 +8,90 @@
 html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 a{color:inherit}
 .header{border-bottom:1px solid var(--border);background:rgba(17,23,43,.7);backdrop-filter:blur(8px)}
-.header-inner{max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.header-inner{max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap} */
+
+
+.main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.input {
+    flex: 1;
+    min-width: 240px;
+}
+
+.input, .select {
+    /* background: var(--card); */
+    border: 1px solid #e6e9f5;
+    color: #000;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font: inherit;
+}
+
+/* KPI */
+.kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.grid {
+    display: grid;
+    gap: 14px;
+}
+
+.kpi {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+.card-pad {
+    padding: 20px;
+}
+.card {
+    background: #aeaeaf;
+    border: 1px solid #aeaeaf;
+    border-radius: 12px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .02) inset;
+}
+.kpi .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #000;
+    font-weight: 600;
+}
+
+/* CHARTS */
+.row {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 2fr 1fr;
+}
+.card {
+    background: #d6d5d5;
+    border: 1px solid #868686;
+    border-radius: 12px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .02) inset;
+}
+.card-head {
+    padding: 18px 20px 8px;
+}
+
+/* Top Suburbs */
+.row-3 {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr 2fr;
+}

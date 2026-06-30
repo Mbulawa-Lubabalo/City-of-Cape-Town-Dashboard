@@ -3,23 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>City of Cape Town Notification Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
 
     <header class="header">
-        <div class="header-inner">
-            <div class="brand">
-            <div class="brand-icon">⚡</div>
-            <div>
-                <h1>Electricity Notifications</h1>
-                <p>C3 complaint operations dashboard · Cape Town</p>
-            </div>
-            </div>
-            <span class="pill">1,248 records</span>
+        <div class="header">
+            <h3>City of Cape Town Notification Dashboard</h3>
         </div>
     </header>
+
+    <div class="main">
+        
+        <div class="filters">
+            <input class="input" placeholder="Search suburb, notification ID, work center…" />
+            <select class="select">
+                <option>Suburbs</option>
+                <option>Parklands</option><option>Parow</option><option>Goodwood</option>
+            </select>
+            <select class="select"><option>All status</option><option>Open</option><option>Resolved</option></select>
+        </div>
+
+        <!-- KPIs -->
+        <div class="grid kpis">
+            <div class="card card-pad kpi">
+                <div>
+                    <div class="label">Total notifications</div>
+                    <div class="value"></div>
+                    <div class="extra-info"></div>
+                </div>
+                <div class="icon ic-info"></div>
+            </div>
+            <div class="card card-pad kpi">
+                <div>
+                    <div class="label">Open</div>
+                    <div class="value"></div>
+                    <div class="extra-info"></div>
+                </div>
+                <div class="icon ic-warn"></div>
+            </div>
+            <div class="card card-pad kpi">
+                <div>
+                    <div class="label">Resolved</div>
+                    <div class="value"></div>
+                    <div class="extra-info"></div>
+                </div>
+                <div class="icon ic-ok"></div>
+            </div>
+            <div class="card card-pad kpi">
+                <div>
+                    <div class="label">Avg. resolution time</div>
+                    <div class="value"></div>
+                    <div class="extra-info">Created → Completed</div>
+                </div>
+                <div class="icon ic-mut"></div>
+            </div>
+        </div>
+
+        <!-- CHARTS -->
+        <div class="row">
+            <div class="card">
+                <div class="card-head">
+                    <h3>April 2026</h3>
+                    <div class="sub">Daily vs. resolved</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <h3>Status</h3>
+                    <div class="sub">Open vs Closed notifications</div>
+                </div>
+            </div>
+        </div>
+
+          <!-- Suburbs + Recent -->
+        <div class="row-3">
+            <div class="card">
+                <div class="card-head">
+                    <h3>Top suburbs</h3>
+                    <div class="sub">Highest notification volume</div>
+                </div>
+                <div class="bars"></div>
+            </div>
+            <div class="card">
+                <div class="card-head">
+                    <h3>Recent notifications</h3>
+                    <div class="sub">Showing 6 of 1,248</div>
+                </div>
+                <div style="overflow-x:auto">
+                    <table></table>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
     
 </body>
 </html>
