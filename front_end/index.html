@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City of Cape Town Notification Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script type="module" src="/front_end/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -68,12 +69,19 @@
                 <div class="card-head">
                     <h3>April 2026</h3>
                     <div class="sub">Daily vs. resolved</div>
+                    <div class="chart">
+                        <canvas id="kpiChart"></canvas>
+
+                    </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-head">
                     <h3>Status</h3>
                     <div class="sub">Open vs Closed notifications</div>
+                    <div class="chart">
+                        <canvas id="status-Chart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,6 +92,9 @@
                 <div class="card-head">
                     <h3>Top suburbs</h3>
                     <div class="sub">Highest notification volume</div>
+                    <div class="chart">
+                        <canvas id="bar-Chart"></canvas>
+                    </div>
                 </div>
                 <div class="bars"></div>
             </div>
@@ -93,7 +104,20 @@
                     <div class="sub">Showing 6 of 1,248</div>
                 </div>
                 <div style="overflow-x:auto">
-                    <table></table>
+                    <table id="notificationsTable">
+                        <thead>
+                            <tr>
+                                <th>NOTIFICATION</th>
+                                <th>TYPE</th>
+                                <th>SUBURB</th>
+                                <th>CREATED</th>
+                                <th class="right">STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be injected here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
